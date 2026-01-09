@@ -7,7 +7,7 @@
 **Cloud Buddy** is a serverless web application designed to help users master the **AWS Certified Cloud Practitioner (CLF-C02)** exam domains. It reinforces knowledge through digital flashcards, allowing users to filter by exam domain and flag complex services for later review.
 
 
-## Project Team & Roles
+## Project Team 
 
 | Role | Name |
 | :--- | :--- |
