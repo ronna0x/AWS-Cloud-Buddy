@@ -19,6 +19,16 @@
 | **Solutions Architect** | Zinash Belay |
 
 
+## **Language Stack**
+
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Front-end** | React & JavaScript | Responsive UI for exam prep and flashcard interaction. |
+| **Back-end** | Node.js | Serverless logic within AWS Lambda functions. |
+| **Database** | NoSQL | Data modeling and retrieval via Amazon DynamoDB. |
+
+
+
 ## System Architecture
 The application utilizes a modern, serverless "Request-Response" architecture to ensure high availability and low cost.
 
