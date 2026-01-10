@@ -18,8 +18,8 @@ export default function Filters({
         <option value="Databases">Databases</option>
         <option value="Networking">Networking</option>
         <option value="Management">Management</option>
-        <option value="Billing & pricing">Billing & pricing</option>
-        <option value="Well-architected framework">Well-architected framework</option>
+        <option value="Billing & Pricing">Billing & Pricing</option>
+        <option value="Well-Architected Framework">Well-Architected Framework</option>
       </select>
 
       <select
