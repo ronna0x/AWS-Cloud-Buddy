@@ -314,21 +314,126 @@ cursor: not-allowed;
 }
 /* ================= LOGIN (OPTIONAL) ================= */
 .login-screen {
-display: flex;
-height: 100vh;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: flex-start; /* align items toward top */
+  align-items: center;
+  /*padding: 60px 20px 20px;  more space at the top to lift content */
+  background: url("./assets/background.png");
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.login-btn {
-background: #ff9900;
-border: none;
-padding: 14px 26px;
-border-radius: 10px;
-font-size: 18px;
-font-weight: 600;
-cursor: pointer;
+/* Logo with a subtle glow */
+.top-left-logo {
+  position: relative;       
+  width: 325px;             
+  display: block;
+  margin: 0 auto 40px;      
+  filter: drop-shadow(0 0 15px rgba(255, 153, 0, 0.4)); 
 }
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: -20px; 
+}
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  margin-bottom: 40px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.app-description, .resources {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px); 
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.app-description:hover, .resources:hover {
+  transform: translateY(-5px);
+}
+
+
+h3 {
+  color: #232f3e; 
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  letter-spacing: -0.5px;
+  font-family: 'Roboto', sans-serif; 
+}
+
+p {
+  color: #4a5568;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  font-family: 'Lato', sans-serif; 
+}
+
+/* Styled List Links */
+.resources ul {
+  list-style: none;
+  padding: 0;
+}
+
+.resources li {
+  margin-bottom: 12px;
+}
+
+.resources a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #1a202c;
+  padding: 12px 18px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.resources a:hover {
+  background: #ffffff;
+  border-color: #ff9900;
+  color: #ff9900;
+  box-shadow: 0 4px 12px rgba(255, 153, 0, 0.15);
+}
+
+
+.login-btn {
+  background: linear-gradient(135deg, #ff9900 0%, #ffb347 100%);
+  color: white;
+  border: none;
+  padding: 18px 60px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(255, 153, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 30px rgba(255, 153, 0, 0.4);
+}
+
 /* ===== HEADER LAYOUT FIX ===== */
 
 .app-header {
