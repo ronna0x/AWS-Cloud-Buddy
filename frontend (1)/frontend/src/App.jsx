@@ -69,8 +69,7 @@ export default function App() {
   const [flipped, setFlipped] = useState(false);
 
   const [domainFilter, setDomainFilter] = useState("");
-  const [levelFilter, setLevelFilter] = useState("");
-
+  const [levelFilter, setLevelFilter] = useState(""); 
   /* ================= LOAD ALL CARDS ================= */
   useEffect(() => {
     if (!idToken) return;
@@ -188,15 +187,44 @@ export default function App() {
   if (!idToken) {
     return (
       <div className="login-screen">
-        <button
-          className="login-btn"
-          onClick={() =>
-            (window.location.href = LOGIN_URL)
-          }
-        >
-          CloudBuddy Login
-        </button>
+  <img
+    src="/Cloud-Buddy-icon-2.png"
+    alt="CloudBuddy Logo"
+    className="top-left-logo"
+  />
+
+  <div className="main-container">
+    <div className="content-wrapper">
+      <div className="app-description">
+        <h3>Welcome to Cloud Buddy</h3>
+        <p>
+          This application helps learners prepare for the AWS Certified Cloud
+          Practitioner exam using focused flashcards and cloud fundamentals.
+        </p>
       </div>
+
+      <div className="resources">
+        <h3>AWS CCP Resources</h3>
+        <ul>
+          <li>
+            <a href="https://docs.aws.amazon.com/aws-certification/latest/examguides/cloud-practitioner-02.html" target="_blank" rel="noopener noreferrer">
+              📘 Official Exam Guide
+            </a>
+          </li>
+          <li>
+            <a href="https://aws.amazon.com/certification/certification-prep/testing/" target="_blank" rel="noopener noreferrer">
+              🗓 Schedule Exam
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <button className="login-btn" onClick={() => (window.location.href = LOGIN_URL)}>
+      Login
+    </button>
+  </div>
+</div>
     );
   }
 
