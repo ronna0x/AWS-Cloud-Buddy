@@ -1,35 +1,3 @@
-// export default function FlashcardActions({
-//   view,
-//   index,
-//   total,
-//   prev,
-//   next,
-//   addToStudyLater,
-//   removeFromStudyLater,
-// }) {
-//   return (
-//     <div className="actions">
-//       <button onClick={prev} disabled={index === 0}>
-//         ⬅ Previous
-//       </button>
-
-//       {view === "studyLater" ? (
-//         <button className="remove" onClick={removeFromStudyLater}>
-//           Remove
-//         </button>
-//       ) : (
-//         <button className="study" onClick={addToStudyLater}>
-//           Study Later
-//         </button>
-//       )}
-
-//       <button onClick={next} disabled={index === total - 1}>
-//         Next ➡
-//       </button>
-//     </div>
-//   );
-// }
-
 export default function FlashcardActions({
   view,
   index,
@@ -62,7 +30,12 @@ export default function FlashcardActions({
 </button>
       )}
 
-      <button className="next" onClick={next} disabled={index === total - 1}>
+      {/* <button className="next" onClick={next} disabled={index === total - 1}>
+        Next ➡
+      </button> */}
+       <button 
+      className={`next ${index === total -1 ? "disabled" : ""}`}
+       onClick={next} disabled={index === total - 1}>
         Next ➡
       </button>
     </div>

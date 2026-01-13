@@ -6,7 +6,7 @@ export const LOGIN_URL =
   "?client_id=6v9ml7acqu4oksdbvo188t20nl" +
   "&response_type=code" +
   "&scope=openid+email+phone" +
-  "&redirect_uri=https://d2jt6kdflh9if4.cloudfront.net";
+  "&redirect_uri=http://localhost:5173";
 
 export const getCodeFromUrl = () => {
   const params = new URLSearchParams(window.location.search);
@@ -18,7 +18,7 @@ export const exchangeCodeForToken = async (code) => {
     grant_type: "authorization_code",
     client_id: "6v9ml7acqu4oksdbvo188t20nl",
     code,
-    redirect_uri: "https://d2jt6kdflh9if4.cloudfront.net",
+    redirect_uri: "http://localhost:5173",
   });
 
   const res = await fetch(
