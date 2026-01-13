@@ -1,38 +1,18 @@
 import { useState, useEffect } from "react";
-const questions = [
-  {
-    question: "What planet is known as the Red Planet?",
-    options: ["Earth", "Mars", "Jupiter", "Venus"],
-    answer: "Mars",
-  },
-  {
-    question: "Which language is used to style web pages?",
-    options: ["HTML", "Java", "CSS", "Python"],
-    answer: "CSS",
-  },
-  {
-    question: "What does CPU stand for?",
-    options: [
-      "Central Processing Unit",
-      "Computer Personal Unit",
-      "Central Performance Utility",
-      "Control Processing User",
-    ],
-    answer: "Central Processing Unit",
-  },
-];
 
-const TIME_PER_QUESTION = 10;
+const TIME_PER_QUESTION = 15;
 
-export default function Game() {
+export default function Game({
+  random10,
+  setCn, cn
+}) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TIME_PER_QUESTION);
   const [selectedOption, setSelectedOption] = useState(null);
   const [answerStatus, setAnswerStatus] = useState(null);
-
-  // Timer logic
+  
   useEffect(() => {
     if (showScore) return;
 
@@ -46,24 +26,24 @@ export default function Game() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeLeft, showScore]);
+  }, [timeLeft, showScore, cn]);
 
   function handleAnswerClick(option) {
     setSelectedOption(option);
-    const isCorrect = option === questions[currentQuestion].answer;
+    const isCorrect = option === random10[currentQuestion].answer;
     setAnswerStatus(isCorrect ? "correct" : "incorrect");
 
     if (isCorrect) {
       setScore(score + 1);
     }
     
-    // Wait for the user to see feedback before going to the next question
+    
     setTimeout(() => goToNextQuestion(), 1000);
   }
 
   function goToNextQuestion() {
     const next = currentQuestion + 1;
-    if (next < questions.length) {
+    if (next < random10.length) {
       setCurrentQuestion(next);
       setTimeLeft(TIME_PER_QUESTION);
       setSelectedOption(null);
@@ -80,9 +60,11 @@ export default function Game() {
     setTimeLeft(TIME_PER_QUESTION);
     setSelectedOption(null);
     setAnswerStatus(null);
+    setCn((prev) => prev + 1);
+    
   }
 
-  const progressPercentage = ((currentQuestion + 1) / questions.length) * 100;
+  const progressPercentage = ((currentQuestion + 1) / random10.length) * 100;
 
   return (
     <div className="quiz-container">
@@ -91,7 +73,7 @@ export default function Game() {
           <h2>Quiz Complete 🎉</h2>
           <p>
             You scored <strong>{score}</strong> out of{" "}
-            <strong>{questions.length}</strong>
+            <strong>{random10.length}</strong>
           </p>
           <button className="restart-btn" onClick={restartQuiz}>
             Restart Quiz
@@ -101,12 +83,12 @@ export default function Game() {
         <>
           <div className="quiz-header">
             <span>
-              Question {currentQuestion + 1}/{questions.length}
+              Question {currentQuestion + 1}/{random10.length}
             </span>
             <span className="timer">⏱️ {timeLeft}s</span>
           </div>
 
-          <h2>{questions[currentQuestion].question}</h2>
+          <h2>{random10[currentQuestion].question}</h2>
 
           <div className="progress-bar">
             <div
@@ -116,7 +98,7 @@ export default function Game() {
           </div>
 
           <div className="options">
-            {questions[currentQuestion].options.map((option) => (
+            {random10[currentQuestion].options.map((option) => (
               <button
                 key={option}
                 className={`option-btn ${

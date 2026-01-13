@@ -33,7 +33,7 @@ export default function App() {
         grant_type: "authorization_code",
         client_id: "6v9ml7acqu4oksdbvo188t20nl",
         code,
-        redirect_uri: "https://d2jt6kdflh9if4.cloudfront.net",
+        redirect_uri: "http://localhost:5173",
       });
 
       const res = await fetch(
@@ -70,6 +70,7 @@ export default function App() {
 
   const [domainFilter, setDomainFilter] = useState("");
   const [levelFilter, setLevelFilter] = useState(""); 
+  const [cn, setCn] = useState(0);
   /* ================= LOAD ALL CARDS ================= */
   useEffect(() => {
     if (!idToken) return;
@@ -98,10 +99,7 @@ export default function App() {
     
     setStudyLaterCards(data.map((c) => ({ cardId: c.SK, ...c })));
   };
-//   useEffect(() => {
- 
-//   // fetchCards();
-// }, [idToken]); 
+
 
 
 
@@ -132,7 +130,6 @@ export default function App() {
   };
 
   const addToStudyLater = () => {
-    console.log("Adding to study later");
     if (!card) return;
 
     const email = getUserEmail(idToken);
@@ -147,7 +144,6 @@ export default function App() {
   };
 
   const removeFromStudyLater = () => {
-    console.log("Removing from study later", card);
     if (!card) return;
 
     const email = getUserEmail(idToken);
@@ -227,6 +223,29 @@ export default function App() {
 </div>
     );
   }
+  /* ============ Game Logic ============== */
+
+function shuffleArray(array) {
+  const copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function getRandomQuestions(questions, count = 10) {
+  const shuffledQuestions = [...questions]
+    .sort(() => 0.5 - Math.random())
+    .slice(0, count);
+
+  return shuffledQuestions.map((q) => ({
+    ...q,
+    options: shuffleArray(q.options),
+  }));
+}
+
+  const random10 = getRandomQuestions(cards);
 
   /* ================= UI ================= */
   return (
@@ -244,7 +263,12 @@ export default function App() {
 
       {/* Content changes based on view */}
       {view === "game" ? (
-        <Game />
+        <Game 
+        random10={random10}
+        setCn={setCn}
+        cn={cn}
+
+        />
       ) : (
         <>
           <Filters

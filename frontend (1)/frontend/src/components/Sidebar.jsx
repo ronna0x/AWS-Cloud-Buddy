@@ -14,7 +14,11 @@ export default function Sidebar({
 
   return (
     <div className="sidebar">
-      <h2>Cloud Buddy</h2>
+       <img
+        src="/Cloud-Buddy-icon-2.png"
+        alt="Flashcards App Logo"
+        className="app-logo"
+      />
 
       <div
         className={`nav-item ${view === "all" ? "active" : ""}`}
