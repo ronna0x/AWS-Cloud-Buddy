@@ -33,7 +33,7 @@ export default function App() {
         grant_type: "authorization_code",
         client_id: "6v9ml7acqu4oksdbvo188t20nl",
         code,
-        redirect_uri: "http://localhost:5173",
+        redirect_uri: "https://d2jt6kdflh9if4.cloudfront.net",
       });
 
       const res = await fetch(
@@ -277,6 +277,7 @@ function getRandomQuestions(questions, count = 10) {
             setDomainFilter={setDomainFilter}
             setLevelFilter={setLevelFilter}
             applyFilters={applyFilters}
+             speakText={card?.answer}
           />
 
           {card ? (

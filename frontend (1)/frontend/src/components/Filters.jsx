@@ -1,11 +1,28 @@
+import { getSpeech } from "../api/polly";
 export default function Filters({
   domainFilter,
   levelFilter,
   setDomainFilter,
   setLevelFilter,
   applyFilters,
+  speakText,
 }) {
-  return (
+  const handleSpeak = async () => {
+    if (!speakText) {
+      console.warn("No text to speak");
+      return;
+    }
+
+    try {
+  const audioSrc = await getSpeech(speakText);
+const audio = new Audio(audioSrc);
+audio.play().catch(err => console.error("Failed to play speech:", err));
+} catch (err) {
+  console.error("Failed to play speech:", err);
+}
+  };
+
+  return (    
     <div className="filters">
       <select
         value={domainFilter}
@@ -35,6 +52,14 @@ export default function Filters({
       <button className="apply" onClick={applyFilters}>
         Apply
       </button>
+ {/* ================= Speak Button at the Top ================= */}
+      {speakText &&
+     // <div style={{ marginBottom: "10px", textAlign: "center" }}>
+        <button onClick={handleSpeak} className="speak-btn">
+          🔊 
+        </button>
+      //</div>
+      }
     </div>
   );
 }
