@@ -197,7 +197,18 @@ font-weight: 600;
 .apply {
 cursor: pointer;
 }
+.speak-btn {
+  padding: 10px 16px;
+  background-color: #ff914d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
+.speak-btn:hover{
+cursor: pointer;
+}
 /* ================= FLASHCARD ================= */
 .flashcard-area {
 width: 100%;
