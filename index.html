@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Cloud Buddy Presentation</title>
+    <style>
+        :root {
+            --primary-blue: #4A9EFF; 
+            --accent-orange: #FF9D42;
+            --navy: #2B4B7C;
+            --slide-width: 850px; 
+            --slide-height: 650px;
+        }
+
+        body {
+            background-color: var(--navy);
+            background-image: url("./background-BwxGMncy.png"); 
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: var(--slide-width);
+            height: var(--slide-height);
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none; 
+            width: 100%;
+            flex: 1;
+            padding: 30px 60px;
+            box-sizing: border-box;
+            flex-direction: column;
+            cursor: pointer;
+            padding-bottom: 80px; 
+        }
+
+        .slide.active { display: flex; }
+
+        .cover-slide {
+            justify-content: center;
+            align-items: center;
+            border: 15px solid var(--primary-blue) !important;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1, h2, .cover-subtitle { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center;
+            white-space: nowrap;
+            width: 100%;
+            display: block;
+        }
+
+        h1 { color: var(--accent-orange); font-size: 52px; margin-bottom: 20px; }
+        .cover-subtitle { color: var(--primary-blue); font-weight: bold; font-size: 38px; margin-top: 20px; }
+        
+        h2 { 
+            color: var(--primary-blue); 
+            font-size: 30px; 
+            border-bottom: 3px solid var(--accent-orange); 
+            padding-bottom: 10px; 
+            margin-top: 0; 
+            margin-bottom: 10px;
+        }
+
+        p, li, td, th { font-family: Arial, Helvetica, sans-serif; font-size: 17px; color: #333; }
+
+        .toc-list li {
+            display: flex; 
+            justify-content: space-between; 
+            padding: 12px 0; 
+            border-bottom: 1px dotted #ccc; 
+            font-size: 18px; 
+            font-weight: bold;
+            color: var(--navy);
+        }
+
+        #slide-4, #slide-7 { align-items: center; }
+        
+        .centered-text-block {
+            display: inline-block;
+            text-align: left;
+            margin: 0 auto;
+            line-height: 1.2;
+        }
+        .centered-text-block p { margin: 2px 0; }
+
+        .arch-diagram { 
+            max-height: 380px; 
+            width: 100%; 
+            object-fit: contain; 
+            margin-bottom: 5px; 
+        }
+
+        .standard-intro {
+            text-align: left;
+            font-weight: normal;
+            font-size: 24px; 
+            line-height: 1.4;
+            margin-bottom: 20px;
+            color: var(--navy);
+        }
+
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #eee; padding: 10px; text-align: left; } 
+        th { background-color: #f8f9fa; color: var(--navy); }
+
+        .diagram {
+            width: 100%;
+            height: auto;
+            max-height: 330px; 
+            display: block;
+            margin: 5px auto; 
+            object-fit: contain;
+        }
+
+        .controls-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            border-top: 1px solid #ddd;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 8px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .nav-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .slide-indicator { color: var(--navy); font-weight: bold; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+        
+        <div class="slide active cover-slide" id="slide-1">
+            <h1>AWS Cloud Buddy</h1>
+            <img src="logo.png" alt="Logo" style="width:240px;">
+            <div class="cover-subtitle">Project Portfolio</div>
+        </div>
+
+        <div class="slide" id="slide-2">
+            <h2>Table of Contents</h2>
+            <ul class="toc-list" style="list-style: none; padding: 0; margin-top: 5px;">
+                <li><span>Why Cloud Buddy?</span> <span>1</span></li>
+                <li><span>Team & Project Overview</span> <span>2</span></li>
+                <li><span>Cloud Architecture</span> <span>3</span></li>
+                <li><span>Database (DynamoDB)</span> <span>4</span></li>
+                <li><span>Front End & AI</span> <span>5</span></li>
+                <li><span>Back End (Serverless)</span> <span>6</span></li>
+                <li><span>Looking Ahead</span> <span>7</span></li>
+                <li><span>Documentation</span> <span>8</span></li>
+            </ul>
+        </div>
+
+        <div class="slide" id="slide-3">
+            <h2>Why Cloud Buddy?</h2>
+            <p class="standard-intro">
+                When studying for the AWS certification, traditional methods such as paper flashcards, scattered notes, or even apps that aren't quite as tailored, just don't cut it. Time is of the essence. No more losing cards, trying to keep track of progress, or assess readiness. That's why we created our simple but smart Cloud Buddy, to make studying fun and effective.
+            </p>
+        </div>
+
+        <div class="slide" id="slide-4">
+            <h2>Team & Project Overview</h2>
+            <p style="line-height: 1.5; color: var(--navy); font-size: 21px; margin-bottom: 25px;">
+                Cloud Buddy is a high-performance serverless application meticulously designed for students preparing for the AWS CLF-C02 exam. By leveraging AWS's global infrastructure and advanced AI capabilities, our team has built a solution that ensures 99.9% availability and low-latency delivery.
+            </p>
+            <table>
+                <tr><th>Role</th><th>Name</th></tr>
+                <tr><td><strong>Project Manager</strong></td><td>Changa Rose</td></tr>
+                <tr><td><strong>Solutions Architect</strong></td><td>Zinash Belay</td></tr>
+                <tr><td><strong>Database Admin</strong></td><td>Roseline Akwanmi</td></tr>
+                <tr><td><strong>Dev Front-End</strong></td><td>Liza George</td></tr>
+                <tr><td><strong>Dev Back-End</strong></td><td>Giovany Victor</td></tr>
+                <tr><td><strong>Technical Writer</strong></td><td>Ronna Curelea</td></tr>
+            </table>
+        </div>
+
+        <div class="slide" id="slide-5">
+            <h2>Cloud Architecture</h2>
+            <img src="architecture.png" alt="Architecture Diagram" class="arch-diagram">
+            <div class="centered-text-block">
+                <p>• <strong>Delivery:</strong> Amazon CloudFront CDN working with S3 for global content storage.</p>
+                <p>• <strong>API Management:</strong> Amazon API Gateway handles secure request routing.</p>
+                <p>• <strong>Serverless Logic:</strong> AWS Lambda executes backend functions without managing servers.</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-6">
+            <h2>Database (DynamoDB)</h2>
+            <p style="font-size: 20px; color: var(--navy); margin-bottom: 20px;">Our fast NoSQL database acts as the central storage for all application data, ensuring high availability.</p>
+            <div style="font-weight: bold; color: var(--navy); margin-top: 5px;">Data Structures</div>
+            <p style="margin: 2px 0;">• <strong>Flashcards:</strong> A master bank containing technical exam questions and categorized answers.</p>
+            <p style="margin: 2px 0;">• <strong>Study List:</strong> Personalized user-specific tables storing flagged question IDs for review.</p>
+            <div style="font-weight: bold; color: var(--navy); margin-top: 25px;">Operational Flow</div>
+            <p style="margin: 2px 0;">• Lambda performs optimized GET operations for rapid session delivery and card retrieval.</p>
+            <p style="margin: 2px 0;">• Real-time POST operations allow users to save progress and update their personal study lists.</p>
+        </div>
+
+        <div class="slide" id="slide-7">
+            <h2>Front End (React SPA) & AI</h2>
+            <img src="FrontEnd.png" alt="Front End Diagram" class="diagram" style="margin-bottom: 45px;">
+            <div class="centered-text-block">
+                <p>• <strong>Gamified Interface:</strong> Interactive study game logic built with React hooks.</p>
+                <p>• <strong>Authentication:</strong> Secure sessions via AWS Cognito user pools.</p>
+                <p>• <strong>AI Voice:</strong> AWS Polly provides real-time high-quality voiceovers.</p>
+                <p>• <strong>Dynamic UI:</strong> API Gateway triggers via asynchronous JavaScript calls.</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-8">
+            <h2>Back End (Serverless)</h2>
+            <p style="font-size: 20px; color: var(--navy); margin-bottom: 30px;">
+                AWS Lambda acts as the engine for the app, running code on-demand to maintain cost-efficiency.
+            </p>
+            <table>
+                <tr><th>Action</th><th>Method</th><th>Lambda Function</th></tr>
+                <tr><td>Get All Cards</td><td>GET</td><td>GetAllCards</td></tr>
+                <tr><td>Add to List</td><td>POST</td><td>createUserQuestion</td></tr>
+                <tr><td>View Study List</td><td>GET</td><td>allUserQuestions</td></tr>
+                <tr><td>Delete Card</td><td>DELETE</td><td>DeleteCard</td></tr>
+            </table>
+        </div>
+
+        <div class="slide" id="slide-9">
+            <h2>Looking Ahead</h2>
+            <p class="standard-intro">
+                Future enhancement possibilities include tracking user progress, using AI to personalize learning content, expanding Polly’s voice options, and allowing users to create custom flashcards with AI assistance.
+            </p>
+        </div>
+
+        <div class="slide" id="slide-10">
+            <h2>Documentation</h2>
+            <p class="standard-intro" style="font-size: 20px; margin-bottom: 15px;">
+                Our project and portfolio were created using agile team collaboration and thorough technical documentation.
+            </p>
+            <div style="font-weight: bold; color: var(--navy); margin-top: 5px;">GitHub Workflow</div>
+            <p style="margin: 2px 0; line-height: 1.2;">• <strong>Documentation:</strong> Comprehensive README files and technical mapping.</p>
+            <p style="margin: 2px 0; line-height: 1.2;">• <strong>Version Control:</strong> Managed code via decentralized repositories for parallel development.</p>
+            <div style="font-weight: bold; color: var(--navy); margin-top: 25px;">Team Synergy</div>
+            <p style="margin: 2px 0; line-height: 1.2;">• <strong>Meetings:</strong> Weekly technical sync-ups for troubleshooting and progress tracking.</p>
+            <p style="margin: 2px 0; line-height: 1.2;">• <strong>Collaboration:</strong> Peer code reviews and group brainstorming for cloud optimizations.</p>
+        </div>
+
+        <div class="slide cover-slide" id="slide-11">
+            <h2 style="border:none; font-size: 52px; margin-bottom: 20px; color: var(--accent-orange);">Thank You!</h2>
+            <img src="logo.png" alt="Logo" style="width: 180px; margin-bottom: 20px;">
+            <p style="color: var(--primary-blue); font-weight: bold; font-size: 28px; margin:0;">Cloud Buddy Project 2026</p>
+        </div>
+
+        <div class="controls-bar">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
+            <span class="slide-indicator" id="indicator"></span>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 11;
+
+        function updateUI() {
+            const indicator = document.getElementById('indicator');
+            if (currentSlide >= 3 && currentSlide <= 10) {
+                indicator.innerText = `Slide ${currentSlide - 2} / 8`;
+            } else {
+                indicator.innerText = ""; 
+            }
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+        }
+
+        function changeSlide(direction) {
+            if (currentSlide + direction > totalSlides || currentSlide + direction < 1) return;
+            document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+            currentSlide += direction;
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+            updateUI();
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>
