@@ -37,8 +37,8 @@ The application utilizes a modern, serverless "Request-Response" architecture to
 * **API Layer:** Amazon API Gateway (Restful Endpoints)
 * **Logic:** AWS Lambda (5 Microservices)
 * **Data:** Amazon DynamoDB (NoSQL)
-
-
+  
+<img width="501" height="370" alt="architecture" src="https://github.com/user-attachments/assets/0647e99f-f0a7-467f-8793-fb4ecb7ddf35" />
 
 ---
 
